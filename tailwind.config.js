@@ -13,6 +13,10 @@ export default {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ["Inter", ...defaultTheme.fontFamily.sans],
+				serif: ["Playfair Display", ...defaultTheme.fontFamily.serif],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -52,35 +56,12 @@ export default {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
-				chart: {
-					'1': 'hsl(var(--chart-1))',
-					'2': 'hsl(var(--chart-2))',
-					'3': 'hsl(var(--chart-3))',
-					'4': 'hsl(var(--chart-4))',
-					'5': 'hsl(var(--chart-5))'
-				},
-				// Premium Gold Colors
-				gold: {
-					100: "#FFF9E6",
-					200: "#FFF0BF",
-					300: "#FFE699",
-					400: "#FFD700", // Standard Gold
-					500: "#E6C200",
-					600: "#B39700",
-					700: "#806B00",
-					800: "#4D4000",
-					900: "#1A1500",
-				},
-			},
-			animation: {
-				scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-			},
-			keyframes: {
-				scroll: {
-					to: {
-						transform: "translate(calc(-50% - 0.5rem))",
-					},
-				},
+
+				// Corporate Brand Colors
+				corporate: {
+					blue: "#0E1C2F", // Goldman-ish Navy
+					gray: "#F4F5F7", // Light background
+				}
 			},
 		}
 	},
@@ -90,14 +71,10 @@ export default {
 	],
 }
 
-// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {
 	let allColors = flattenColorPalette(theme("colors"));
 	let newVars = Object.fromEntries(
 		Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
 	);
-
-	addBase({
-		":root": newVars,
-	});
+	addBase({ ":root": newVars });
 }

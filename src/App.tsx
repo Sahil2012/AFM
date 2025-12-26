@@ -1,18 +1,18 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { TrustBar } from "@/components/sections/TrustBar";
-import { ValueProp } from "@/components/sections/ValueProp";
-import { MentorBio } from "@/components/sections/MentorBio";
+import { StatsBar } from "@/components/sections/StatsBar";
+import { NewsGrid } from "@/components/sections/NewsGrid";
+import { LeaderBio } from "@/components/sections/LeaderBio";
 import { Footer } from "@/components/layout/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground overflow-x-hidden selection:bg-gold-500/30">
+    <div className="min-h-screen bg-white text-corporate-blue">
       <Navbar />
       <Hero />
-      <TrustBar />
-      <ValueProp />
-      <MentorBio />
+      <StatsBar />
+      <LeaderBio />
+      <NewsGrid />
       <Footer />
     </div>
   );

@@ -1,120 +1,87 @@
 "use client";
-import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import logo from "@/assets/afm-logo.png";
+import { useState } from "react";
+import { Search, Menu, X } from "lucide-react";
 
 const navItems = [
+    { name: "Our Firm", link: "#firm" },
+    { name: "Insights", link: "#insights" },
     { name: "One Core Program", link: "#program" },
-    { name: "About Ezekiel", link: "#about" },
-    { name: "Reviews", link: "#reviews" },
-    { name: "Free Training", link: "#free-training" },
+    { name: "Careers", link: "#careers" },
+    { name: "Investor Relations", link: "#ir" },
 ];
 
 export const Navbar = () => {
-    const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     return (
         <>
-            <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5 }}
-                className={cn(
-                    "fixed top-0 inset-x-0 z-50 h-20 transition-all duration-300 border-b border-transparent",
-                    scrolled
-                        ? "bg-neutral-950/80 backdrop-blur-md border-white/10"
-                        : "bg-transparent"
-                )}
-            >
-                <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex items-center justify-between">
+            <header className="fixed top-0 inset-x-0 z-50 bg-white border-b border-neutral-200">
+                {/* Top Utility Bar (Goldman style) */}
+                <div className="hidden md:flex justify-end items-center px-12 py-2 bg-neutral-50 border-b border-neutral-200 text-xs font-medium text-neutral-600 space-x-6">
+                    <span className="cursor-pointer hover:text-corporate-blue">Global / English</span>
+                    <span className="cursor-pointer hover:text-corporate-blue">Client Login</span>
+                    <span className="cursor-pointer hover:text-corporate-blue">Contact Us</span>
+                </div>
+
+                {/* Main Nav */}
+                <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
+
                     {/* Logo */}
-                    <div className="flex items-center gap-2 cursor-pointer">
-                        <img src={logo} alt="AFM Logo" className="h-8 w-auto" />
-                        <span className="text-white font-bold text-lg tracking-tight hidden sm:block">
-                            Asia Forex Mentor
-                        </span>
+                    <div className="flex items-center gap-3 cursor-pointer">
+                        <div className="h-10 w-10 bg-corporate-blue flex items-center justify-center text-white font-serif font-bold text-xl rounded-sm">
+                            A
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="font-serif font-bold text-xl tracking-tight text-corporate-blue leading-none">ASIA FOREX</span>
+                            <span className="font-sans text-[10px] tracking-[0.2em] text-neutral-500 uppercase">Mentor</span>
+                        </div>
                     </div>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-8">
+                    <nav className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
                             <a
                                 key={item.name}
                                 href={item.link}
-                                className="text-sm font-medium text-neutral-300 hover:text-gold-400 transition-colors"
+                                className="text-sm font-semibold text-corporate-blue hover:text-blue-700 hover:underline underline-offset-4 transition-all"
                             >
                                 {item.name}
                             </a>
                         ))}
-                    </div>
-
-                    {/* Actions */}
-                    <div className="hidden md:flex items-center gap-4">
-                        <Button
-                            variant="ghost"
-                            className="text-neutral-300 hover:text-white hover:bg-white/10"
-                        >
-                            Login
-                        </Button>
-                        <Button className="bg-gold-500 hover:bg-gold-600 text-black font-semibold rounded-full px-6">
-                            Get Started
-                        </Button>
-                    </div>
+                        <Search className="w-5 h-5 text-corporate-blue cursor-pointer hover:text-blue-700 ml-4" />
+                    </nav>
 
                     {/* Mobile Toggle */}
                     <button
-                        className="md:hidden text-neutral-300"
+                        className="md:hidden text-corporate-blue"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
-                        {mobileMenuOpen ? <X /> : <Menu />}
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
-            </motion.nav>
+            </header>
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "100vh" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="fixed inset-0 top-20 z-40 bg-neutral-950 border-t border-neutral-800 md:hidden flex flex-col p-6 space-y-6"
-                    >
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+                <div className="fixed inset-0 z-40 bg-white pt-32 px-6">
+                    <div className="flex flex-col space-y-6">
                         {navItems.map((item) => (
                             <a
                                 key={item.name}
                                 href={item.link}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="text-lg font-medium text-neutral-300 hover:text-gold-400"
+                                className="text-2xl font-serif font-medium text-corporate-blue border-b border-neutral-100 pb-4"
                             >
                                 {item.name}
                             </a>
                         ))}
-                        <div className="h-px bg-neutral-800 w-full" />
-                        <Button
-                            variant="ghost"
-                            className="w-full justify-start text-neutral-300 hover:text-white"
-                        >
-                            Login
-                        </Button>
-                        <Button className="w-full bg-gold-500 hover:bg-gold-600 text-black font-bold">
-                            Get Started
-                        </Button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        <div className="pt-8 flex flex-col space-y-4 text-sm text-neutral-500">
+                            <span>Client Login</span>
+                            <span>Contact Us</span>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     );
 };
