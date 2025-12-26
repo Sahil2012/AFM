@@ -4,15 +4,32 @@ import { Search, Menu, X } from "lucide-react";
 import logo from "@/assets/afm-logo.png";
 
 const navItems = [
-    { name: "Our Firm", link: "#firm" },
-    { name: "Insights", link: "#insights" },
+    { name: "The Firm", link: "#about" },
+    { name: "Our Edge", link: "#why-us" },
     { name: "One Core Program", link: "#program" },
-    { name: "Careers", link: "#careers" },
-    { name: "Investor Relations", link: "#ir" },
+    { name: "Track Record", link: "#reviews" },
+    { name: "Market Insights", link: "#insights" },
 ];
 
 export const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, link: string) => {
+        e.preventDefault();
+        const element = document.querySelector(link);
+        if (element) {
+            // Offset for fixed header (approx 100px for desktop header + utility bar)
+            const headerOffset = 100;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+            setMobileMenuOpen(false);
+        }
+    };
 
     return (
         <>
@@ -28,7 +45,7 @@ export const Navbar = () => {
                 <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-20 md:h-24 flex items-center justify-between">
 
                     {/* Logo */}
-                    <div className="flex items-center gap-3 cursor-pointer">
+                    <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         <img src={logo} alt="Asia Forex Mentor" className="h-12 w-auto object-contain" />
                         <div className="flex flex-col">
                             <span className="font-serif font-bold text-xl tracking-tight text-corporate-blue leading-none">ASIA FOREX</span>
@@ -42,6 +59,7 @@ export const Navbar = () => {
                             <a
                                 key={item.name}
                                 href={item.link}
+                                onClick={(e) => scrollToSection(e, item.link)}
                                 className="text-sm font-semibold text-corporate-blue hover:text-blue-700 hover:underline underline-offset-4 transition-all"
                             >
                                 {item.name}
@@ -68,7 +86,7 @@ export const Navbar = () => {
                             <a
                                 key={item.name}
                                 href={item.link}
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={(e) => scrollToSection(e, item.link)}
                                 className="text-2xl font-serif font-medium text-corporate-blue border-b border-neutral-100 pb-4"
                             >
                                 {item.name}

@@ -2,7 +2,7 @@ import { BarChart3, Target, Globe } from "lucide-react";
 
 export const WhyChoose = () => {
     return (
-        <section className="py-24 bg-white border-b border-neutral-200">
+        <section className="py-24 bg-white border-b border-neutral-200" id="why-us">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                 <div className="mb-16 max-w-3xl">
                     <h2 className="font-serif text-3xl md:text-5xl text-corporate-blue mb-6">

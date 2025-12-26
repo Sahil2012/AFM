@@ -2,7 +2,7 @@ import ezekielImg from "@/assets/ezekiel-invest-newspaper.png";
 
 export const LeaderBio = () => {
     return (
-        <section className="bg-corporate-gray py-24">
+        <section className="bg-corporate-gray py-24" id="about">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-20 items-center">
 
                 {/* Left Column: All Text Content */}

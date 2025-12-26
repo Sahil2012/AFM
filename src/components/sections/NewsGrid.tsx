@@ -24,7 +24,7 @@ const insights = [
 
 export const NewsGrid = () => {
     return (
-        <SectionWrapper className="py-24 bg-white" id="insights">
+        <SectionWrapper className="py-24 bg-white" id="news">
             <div className="flex justify-between items-end mb-12">
                 <h2 className="font-serif text-3xl md:text-4xl text-corporate-blue">Latest Insights</h2>
                 <a href="#" className="text-sm font-bold text-blue-800 hover:underline underline-offset-4 flex items-center gap-1">
