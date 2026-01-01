@@ -11,7 +11,7 @@ export const InstitutionalCredibility = () => {
                         <img
                             src={dbp}
                             alt="Development Bank of the Philippines"
-                            className="w-full h-auto object-contain mix-blend-multiply opacity-90 grayscale hover:grayscale-0 transition-all duration-700"
+                            className="w-full h-auto object-contain mix-blend-multiply opacity-90 transition-all duration-700"
                         />
                         <div className="mt-4 text-xs font-bold text-neutral-400 uppercase tracking-widest text-center">
                             Official Training Partner

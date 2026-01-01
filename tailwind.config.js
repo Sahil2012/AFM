@@ -59,7 +59,7 @@ export default {
 
 				// Corporate Brand Colors
 				corporate: {
-					blue: "#0E1C2F", // Goldman-ish Navy
+					blue: "#0A0A0A", // Sophisticated near-black
 					gray: "#F4F5F7", // Light background
 				}
 			},
