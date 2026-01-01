@@ -13,25 +13,25 @@ const testimonials = [
     { image: benzinga, name: "Benzinga" },
     { image: investopedia, name: "Investopedia" },
     { image: yahoo, name: "Yahoo Finance" },
-    { image: entrepreneur, name: "Entrepreneur" },
+    // { image: entrepreneur, name: "Entrepreneur" },
     { image: nbc, name: "NBC" },
 ];
 
 export const TrustBar = () => {
     return (
-        <div className="bg-neutral-50 border-y border-neutral-200 py-6 overflow-hidden">
-            <div className="max-w-[1400px] mx-auto px-6 flex items-center gap-12">
-                <div className="hidden md:block shrink-0 border-r border-neutral-300 pr-8">
+        <div className="bg-corporate-blue border-y border-white/10 py-6 overflow-hidden">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center gap-12">
+                <div className="hidden md:block shrink-0 border-r border-white/20 pr-8">
                     <span className="text-xs font-bold tracking-widest text-neutral-400 uppercase">
                         Featured In
                     </span>
                 </div>
 
-                <div className="w-full relative flex h-16 items-center">
+                <div className="w-5/6 relative flex h-16 items-center">
                     <InfiniteMovingCards
                         items={testimonials}
                         direction="left"
-                        speed="slow"
+                        speed="fast"
                         className="w-full bg-transparent"
                     />
                 </div>
